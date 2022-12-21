@@ -86,6 +86,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   /// create PDF & print it
   void _createPdf() async {
+    const PdfColor green = PdfColor.fromInt(0xff9ce5d0);
+    const PdfColor lightGreen = PdfColor.fromInt(0xffcdf1e7);
+
+
     final doc = pw.Document();
 
     /// for using an image from assets
@@ -93,11 +97,147 @@ class _MyHomePageState extends State<MyHomePage> {
 
     doc.addPage(
       pw.Page(
-        pageFormat: PdfPageFormat.a4,
+        pageFormat: PdfPageFormat.undefined,
         build: (pw.Context context) {
-          return pw.Center(
-            child: pw.Text('Hello eclectify Enthusiast'),
-          ); // Center
+
+          double height = PdfPageFormat.a4.height;
+          double width = PdfPageFormat.a4.height;
+          return pw.Container(
+              height: PdfPageFormat.a4.height,
+              width: PdfPageFormat.a4.width,
+              child: pw.Stack(
+                children: [
+
+                  pw.Align(
+                      alignment: pw.Alignment.topCenter,
+                      child: pw.Container(
+                          color: green,
+                          width: PdfPageFormat.a4.width,
+                          height: 100,
+                          child:pw.Stack(
+                              children: [
+                                pw.Align(
+                                alignment: pw.Alignment.topLeft,
+                                child: pw.Container(
+                                    padding: pw.EdgeInsets.only(right: 10,left: 10),
+                                  child: pw.Column(
+                                      crossAxisAlignment: pw.CrossAxisAlignment.center,
+                                      mainAxisAlignment: pw.MainAxisAlignment.center,
+                                      children: [
+
+                                        pw.Text(
+                                          'Dr.Jakir Ahmed',
+                                          style: pw.TextStyle(fontSize: 30),
+                                        ),
+                                      ]
+                                  )
+                                )
+                                ),
+
+                                pw.Align(
+                                    alignment: pw.Alignment.topRight,
+                                    child: pw.Container(
+                                        padding: pw.EdgeInsets.only(right: 10,left: 10),
+                                        child: pw.Column(
+                                            crossAxisAlignment: pw.CrossAxisAlignment.center,
+                                            mainAxisAlignment: pw.MainAxisAlignment.center,
+                                            children: [
+
+                                              pw.Text(
+                                                'Dr.Jakir Ahmed',
+                                                style: pw.TextStyle(fontSize: 30),
+                                              ),
+                                            ]
+                                        )
+                                    )
+                                ),
+                              ]
+                          )
+
+
+                      ),
+                  ),
+
+                  pw.Container(
+                    //color: lightGreen,
+                    height: height-200,
+                    margin: pw.EdgeInsets.only(top: 100,bottom: 100),
+                    //padding: pw.EdgeInsets.only(right: 10,left: 10,top: 10,bottom: 10),
+                    //alignment: pw.Alignment.topCenter,
+                    child: pw.Row(
+                      children: [
+                        pw.Container(
+                          //color: green,
+                          height:height-200,
+                          width: width/4
+                        ),
+                        pw.Container(
+                          height:height-200,
+                          width: 1,
+                          color: green,
+                        ),
+                        pw.Container(
+                         // color: lightGreen,
+                            height:height-200,
+                            width: width/2
+                        ),
+                      ]
+                    )
+
+                    // pw.Column(
+                    //   children: [
+                    //     pw.Text(
+                    //       'Hello eclectify Enthusiast',
+                    //       style: pw.TextStyle(fontSize: 30),
+                    //     ),
+                    //     pw.Text(
+                    //       'Hello eclectify Enthusiast',
+                    //       style: pw.TextStyle(fontSize: 30),
+                    //     ),pw.Text(
+                    //       'Hello eclectify Enthusiast',
+                    //       style: pw.TextStyle(fontSize: 30),
+                    //     ),pw.Text(
+                    //       'Hello eclectify Enthusiast',
+                    //       style: pw.TextStyle(fontSize: 30),
+                    //     ),pw.Text(
+                    //       'Hello eclectify Enthusiast',
+                    //       style: pw.TextStyle(fontSize: 30),
+                    //     ),
+                    //   ]
+                    // ),
+                  ),
+
+                  pw.Align(
+                      child: pw.Container(
+                        color: green,
+                        width: PdfPageFormat.a4.width,
+                        height: 100,
+                          child:pw.Column(
+                              crossAxisAlignment: pw.CrossAxisAlignment.center,
+                              mainAxisAlignment: pw.MainAxisAlignment.center,
+                            children: [
+
+                              pw.Text(
+                                'Hello eclectify Enthusiast',
+                                style: pw.TextStyle(fontSize: 30),
+                              ),
+                            ]
+                          )
+
+
+                      ),
+                      alignment: pw.Alignment.bottomCenter
+                  ),
+                ],
+              )
+            // child: pw.Text(
+            //   'Hello eclectify Enthusiast',
+            //   style: pw.TextStyle(fontSize: 30),
+            // ),
+          );
+          // return pw.Center(
+          //   child: pw.Text('Hello eclectify Enthusiast'),
+          // ); // Center
         },
       ),
     ); // Page
